@@ -3,509 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truck Weight Form</title>
+    <title>Hanman Loha</title>
     <style>
-        body
-        .form-container { margin: 20px; }
-        .form-group { margin-bottom: 10px; }
-        label { display: inline-block; width: 150px; }
-        input { width: 200px; }
-        .print { display: block; }
-        @media print {
-            body * { visibility: hidden; }
-            .print, .print * { visibility: visible; }
-            .print { position: absolute; left: 0; top: 0; }
+        body {
+            margin: 16px;
+        }
 
-       body {
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    color: #3e4855;
-    background-color: #fff;
-    line-height: 1.42857143; 
-        
+        .controls {
+            margin-bottom: 16px;
+            padding: 12px;
+            border: 1px solid #ccc;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+        }
+
+        .form-grid label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .form-grid input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 6px;
+        }
+
+        .btn-row {
+            margin-top: 12px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        #slip {
+            font-weight: bold !important;
+            font-size: 21px;
+        }
+
+        .slip-tools {
+            margin-bottom: 4px;
+        }
+
+        .slip-tools button {
+            font-size: 11px;
+            padding: 0 6px;
+            line-height: 1.2;
+            margin-right: 4px;
+        }
+
+        .slip-title {
+            text-align: center;
+            font-size: 21px;
+            font-weight: bold;
+            line-height: 1;
+            margin: 0 0 2px 0;
+        }
+
+        #print {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #print td {
+            border: 1px solid #8e8e8e;
+            padding: 0 2px;
+            line-height: 1.15;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        #print .align-right {
+            text-align: right;
+        }
+
+        .slip-footer {
+            margin-top: 28px;
+            border-top: 1px dashed #777;
+            height: 1px;
+        }
+
+        @media print {
+            .controls {
+                display: none;
+            }
+
+            .slip-tools {
+                display: none;
+            }
+
+            .slip-title {
+                font-size: 22px;
+            }
+
+            body {
+                margin: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Input Data</h2>
-        <form id="dataForm">
-            <div class="form-group">
-                <label for="truckNo">Truck No.:</label>
-                <input type="text" id="truckNo" value="CG04MD7639">
+    <div class="controls">
+        <div class="form-grid">
+            <div>
+                <label for="truckNo">Truck No.</label>
+                <input id="truckNo" type="text" />
             </div>
-            <div class="form-group">
-                <label for="outTime">Out Time:</label>
-                <input type="text" id="outTime" value="3/04/2026 1:30:29 PM">
+            <div>
+                <label for="outTime">Out Time</label>
+                <input id="outTime" type="text" />
             </div>
-            <div class="form-group">
-                <label for="party">Party:</label>
-                <input type="text" id="party">
+            <div>
+                <label for="party">Party</label>
+                <input id="party" type="text" />
             </div>
-            <div class="form-group">
-                <label for="sender">Sender:</label>
-                <input type="text" id="sender" value="PLANT 2">
+            <div>
+                <label for="sender">Sender</label>
+                <input id="sender" type="text" />
             </div>
-            <div class="form-group">
-                <label for="purpose">Purpose:</label>
-                <input type="text" id="purpose">
+            <div>
+                <label for="purpose">Purpose</label>
+                <input id="purpose" type="text" />
             </div>
-            <div class="form-group">
-                <label for="grossWeight">Gross Weight:</label>
-                <input type="number" step="0.001" id="grossWeight" value="30.600">
+            <div>
+                <label for="grossWeight">Gross Weight</label>
+                <input id="grossWeight" type="text" />
             </div>
-            <div class="form-group">
-                <label for="transporter">Transporter:</label>
-                <input type="text" id="transporter">
+            <div>
+                <label for="transporter">Transporter</label>
+                <input id="transporter" type="text" />
             </div>
-            <div class="form-group">
-                <label for="tareWeight">Tare Weight:</label>
-                <input type="number" step="0.001" id="tareWeight" value="10.400">
+            <div>
+                <label for="tareWeight">Tare Weight</label>
+                <input id="tareWeight" type="text" />
             </div>
-            <div class="form-group">
-                <label for="tax">Tax:</label>
-                <input type="text" id="tax" value="OTH(18)">
+            <div>
+                <label for="tax">Tax</label>
+                <input id="tax" type="text" />
             </div>
-            <div class="form-group">
-                <label for="partyWt">Party Wt.:</label>
-                <input type="number" step="0.001" id="partyWt" value="0.000">
+            <div>
+                <label for="netWeight">Net Weight</label>
+                <input id="netWeight" type="text" />
             </div>
-            <div class="form-group">
-                <label for="inTime">In Time:</label>
-                <input type="text" id="inTime" value="03-Apr-2026 12:58 PM">
+            <div>
+                <label for="partyWt">Party Wt.</label>
+                <input id="partyWt" type="text" />
             </div>
-            <div class="form-group">
-                <label for="date">Date:</label>
-                <input type="text" id="date" value="03-Apr-2026">
+            <div>
+                <label for="inTime">In Time</label>
+                <input id="inTime" type="text" />
             </div>
-            <div class="form-group">
-                <label for="operator">Operator:</label>
-                <input type="text" id="operator" value="KANTA">
+            <div>
+                <label for="dateText">Date</label>
+                <input id="dateText" type="text" />
             </div>
-            <div class="form-group">
-                <label for="securityGuard">Security Guard:</label>
-                <input type="text" id="securityGuard">
+            <div>
+                <label for="operator">Operator</label>
+                <input id="operator" type="text" />
             </div>
-            <div class="form-group">
-                <label for="supervisor">Supervisor:</label>
-                <input type="text" id="supervisor">
+            <div>
+                <label for="securityGuard">Security Guard</label>
+                <input id="securityGuard" type="text" />
             </div>
-            <button type="button" onclick="saveData()">Save Data</button>
-        </form>
+            <div>
+                <label for="supervisor">Supervisor</label>
+                <input id="supervisor" type="text" />
+            </div>
+        </div>
+        <div class="btn-row">
+            <button type="button" id="saveBtn">Save Format</button>
+        </div>
     </div>
 
-<div class="print">
-                        
-                        <div class="printButton ">
-                                <button type="button" class="btn btn-black-alt" id="Print" value="Print" onclick="printnew1(this);"><i class="glyph-icon icon-print"></i> Print</button>
-                                <button type="button" class="btn btn-black-alt" id="Export" value="Export" onclick="printe1(this);"><i class="glyph-icon icon-copy"></i> Export</button>
-
-
-                        </div>
-
-                        <div class="row" style="font-size: 15px;">
-                            <div class="col-sm-12">
-
-
-
-                                <table id="print" style="font-weight:bold!important; width:100%;border-collapse:collapse; font-size:large; " border="1">
-                                    <tbody><tr>
-                                        <td>Truck No.</td>
-                                        <td>CG04MD7639</td>
-                                        <td>Out Time :</td>
-                                        <td>3/04/2026 1:30:29 PM</td>
-                                    </tr>
-                                    <tr>
-                                            <td>Party</td>
-                                                <td></td>
-
-                                                <td>Sender</td>
-                                                <td>PLANT 2</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td>Purpose</td>
-                                        <td></td>
-                                        <td>Gross Weight</td>
-                                        <td style="text-align:right">30.600</td>
-                                    </tr>
-
-                                    <tr>
-                                            <td>Transporter</td>
-                                                <td></td>
-
-
-                                        <td>Tare Weight</td>
-                                        <td style="text-align:right">10.400</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <b>Tax : </b>
-                                        </td>
-                                        <td>
-                                            <span>OTH(18)</span>
-                                        </td>
-                                        <td>Net Weight</td>
-                                        <td style="text-align:right">20.200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span>Party Wt.:  </span>
-
-                                        </td>
-                                        <td>
-                                            <span> 0.000</span>
-                                        </td>
-                                        <td>
-                                        </td>
-
-                                        <td style="text-align:right">
-
-                                        </td>
-
-
-
-                                    </tr>
-
-                                    <tr>
-                                        <td>In Time</td>
-                                                    <td> 03-Apr-2026 12:58 PM  </td>
-
-
-                                        <td>Date :</td>
-                                        <td> 03-Apr-2026 </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <b>Operator:</b> <span>KANTA</span><br>
-                                            <br>
-                                        </td>
-
-                                        <td>
-                                            <b>Security Guard:</b> <br>
-                                            <br>
-                                        </td>
-
-                                        <td>
-                                            <b>Supervisor:</b> <br>
-                                            <br>
-                                        </td>
-
-
-                                        <td></td>
-                                    </tr>
-
-
-
-                                </tbody></table>
-
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div style="width: 100%; position: relative; height: 20px; margin: 30px 0;">
-                                <div style="border-top: 1px dashed black; position: absolute; top: 50%; width: 100%; transform: translateY(-50%);"></div>
-                                <div style="position: absolute; top: 50%; left: 20%; transform: translate(-50%, -50%); background: white;">✄</div>
-                                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white;">✄</div>
-                                <div style="position: absolute; top: 50%; left: 80%; transform: translate(-50%, -50%); background: white;">✄</div>
-                            </div>
-                        </div>
-                            <div class="row " style="font-size: 15px;">
-                                <div class="col-sm-12">
-
-
-
-                                    <table id="print" style="font-weight:bold!important; width:100%;border-collapse:collapse; font-size:medium; " border="1">
-                                        <tbody><tr>
-                                            <td>Truck No.</td>
-                                            <td>CG04MD7639</td>
-                                            <td>Out Time :</td>
-                                            <td>3/04/2026 1:30:29 PM</td>
-                                        </tr>
-                                        <tr>
-                                                <td>Party</td>
-                                                    <td></td>
-
-                                                    <td>Sender</td>
-                                                    <td>PLANT 2</td>
-
-                                        </tr>
-
-                                        <tr>
-                                            <td>Purpose</td>
-                                            <td></td>
-                                            <td>Gross Weight</td>
-                                            <td style="text-align:right">30.600</td>
-                                        </tr>
-
-                                        <tr>
-                                                <td>Transporter</td>
-                                                    <td></td>
-
-
-                                            <td>Tare Weight</td>
-                                            <td style="text-align:right">10.400</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <b>Tax : </b>
-                                            </td>
-                                            <td>
-                                                <span>OTH(18)</span>
-                                            </td>
-                                            <td>Net Weight</td>
-                                            <td style="text-align:right">20.200</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span>Party Wt.:  </span>
-
-                                            </td>
-                                            <td>
-                                                <span> 0.000</span>
-                                            </td>
-                                            <td>
-                                            </td>
-
-                                            <td style="text-align:right">
-
-                                            </td>
-
-
-
-                                        </tr>
-
-                                        <tr>
-                                            <td>In Time</td>
-                                                        <td> 03-Apr-2026 12:58 PM  </td>
-
-
-                                            <td>Date :</td>
-                                            <td> 03-Apr-2026 </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <b>Operator:</b> <span>KANTA</span><br>
-                                                <br>
-                                            </td>
-
-                                            <td>
-                                                <b>Security Guard:</b> <br>
-                                                <br>
-                                            </td>
-
-                                            <td>
-                                                <b>Supervisor:</b> <br>
-                                                <br>
-                                            </td>
-
-
-                                            <td></td>
-                                        </tr>
-                                    </tbody></table>
-                                </div>
-                                <br>
-                                <br>
-
-
-                                    <table class="image-grid">
-                                        <tbody><tr style="width:fit-content">
-
-
-
-
-
-                                        </tr>
-
-                                    </tbody></table>
-
-                            </div>
-                            <div class=""> </div>
-                            <div class="row " style="font-size: 15px;">
-                                <div class="col-sm-12">
-
-
-
-                                    <table id="print" style="font-weight:bold!important; width:100%;border-collapse:collapse; font-size:medium; " border="1">
-                                        <tbody><tr>
-                                            <td>Truck No.</td>
-                                            <td>CG04MD7639</td>
-                                            <td>Out Time :</td>
-                                            <td>3/04/2026 1:30:29 PM</td>
-                                        </tr>
-                                        <tr>
-                                                <td>Party</td>
-                                                    <td></td>
-
-                                                    <td>Sender</td>
-                                                    <td>PLANT 2</td>
-
-                                        </tr>
-
-                                        <tr>
-                                            <td>Purpose</td>
-                                            <td></td>
-                                            <td>Gross Weight</td>
-                                            <td style="text-align:right">30.600</td>
-                                        </tr>
-
-                                        <tr>
-                                                <td>Transporter</td>
-                                                    <td></td>
-
-
-                                            <td>Tare Weight</td>
-                                            <td style="text-align:right">10.400</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <b>Tax : </b>
-                                            </td>
-                                            <td>
-                                                <span>OTH(18)</span>
-                                            </td>
-                                            <td>Net Weight</td>
-                                            <td style="text-align:right">20.200</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span>Party Wt.:  </span>
-
-                                            </td>
-                                            <td>
-                                                <span> 0.000</span>
-                                            </td>
-                                            <td>
-                                            </td>
-
-                                            <td style="text-align:right">
-
-                                            </td>
-
-
-
-                                        </tr>
-
-                                        <tr>
-                                            <td>In Time</td>
-                                                        <td> 03-Apr-2026 12:58 PM  </td>
-
-
-                                            <td>Date :</td>
-                                            <td> 03-Apr-2026 </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <b>Operator:</b> <span>KANTA</span><br>
-                                                <br>
-                                            </td>
-
-                                            <td>
-                                                <b>Security Guard:</b> <br>
-                                                <br>
-                                            </td>
-
-                                            <td>
-                                                <b>Supervisor:</b> <br>
-                                                <br>
-                                            </td>
-
-
-                                            <td></td>
-                                        </tr>
-                                    </tbody></table>
-                                </div>
-                                <br>
-                                <br>
-
-
-                                    <table class="image-grid">
-                                        <tbody><tr style="width:fit-content">
-
-
-
-
-
-                                        </tr>
-
-                                    </tbody></table>
-
-                            </div>
-                            <div class=""> </div>
-
-
-
-
-                    </div>
+    <div id="slip">
+        <div class="slip-tools">
+            <button type="button" id="printBtn">Print</button>
+            <button type="button" id="exportBtn">Export</button>
+        </div>
+
+        <div class="slip-title">SHREE HANUMAN LOHA PVT.LTD.</div>
+
+        <table id="print">
+            <tbody>
+                <tr>
+                    <td>Truck No.</td>
+                    <td id="v_truckNo">CG04NJ7017</td>
+                    <td>Out Time :</td>
+                    <td id="v_outTime">2/04/2026 12:08:41 PM</td>
+                </tr>
+                <tr>
+                    <td>Party</td>
+                    <td id="v_party"></td>
+                    <td>Sender</td>
+                    <td id="v_sender" style="font-size:20px;">PARVESH HP GAS AGENCY</td>
+                </tr>
+                <tr>
+                    <td>Purpose</td>
+                    <td id="v_purpose"></td>
+                    <td>Gross Weight</td>
+                    <td id="v_grossWeight" class="align-right">1.260</td>
+                </tr>
+                <tr>
+                    <td>Transporter</td>
+                    <td id="v_transporter"></td>
+                    <td>Tare Weight</td>
+                    <td id="v_tareWeight" class="align-right">.990</td>
+                </tr>
+                <tr>
+                    <td>Tax :</td>
+                    <td id="v_tax">CSGST</td>
+                    <td>Net Weight</td>
+                    <td id="v_netWeight" class="align-right">.270</td>
+                </tr>
+                <tr>
+                    <td>Party Wt.:</td>
+                    <td id="v_partyWt">0.000</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>In Time</td>
+                    <td id="v_inTime">02-Apr-2026 11:54 AM</td>
+                    <td>Date :</td>
+                    <td id="v_dateText">02-Apr-2026</td>
+                </tr>
+                <tr>
+                    <td>Operator: <span id="v_operator">KANTA</span></td>
+                    <td>Security Guard: <span id="v_securityGuard"></span></td>
+                    <td>Supervisor: <span id="v_supervisor"></span></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="slip-footer"></div>
+    </div>
 
     <script>
-        function saveData() {
-            // Get form values
-            const truckNo = document.getElementById('truckNo').value;
-            const outTime = document.getElementById('outTime').value;
-            const party = document.getElementById('party').value;
-            const sender = document.getElementById('sender').value;
-            const purpose = document.getElementById('purpose').value;
-            const grossWeight = parseFloat(document.getElementById('grossWeight').value);
-            const transporter = document.getElementById('transporter').value;
-            const tareWeight = parseFloat(document.getElementById('tareWeight').value);
-            const tax = document.getElementById('tax').value;
-            const partyWt = parseFloat(document.getElementById('partyWt').value);
-            const inTime = document.getElementById('inTime').value;
-            const date = document.getElementById('date').value;
-            const operator = document.getElementById('operator').value;
-            const securityGuard = document.getElementById('securityGuard').value;
-            const supervisor = document.getElementById('supervisor').value;
+        const storageKey = "weighbridge_saved_format";
+        const fields = [
+            "truckNo",
+            "outTime",
+            "party",
+            "sender",
+            "purpose",
+            "grossWeight",
+            "transporter",
+            "tareWeight",
+            "tax",
+            "netWeight",
+            "partyWt",
+            "inTime",
+            "dateText",
+            "operator",
+            "securityGuard",
+            "supervisor"
+        ];
 
-            // Calculate net weight
-            const netWeight = grossWeight - tareWeight;
+        function setPreviewValue(key, value) {
+            const target = document.getElementById("v_" + key);
+            if (target) target.textContent = value;
+        }
 
-            // Update all tables
-            const tables = document.querySelectorAll('#print');
-            tables.forEach(table => {
-                const rows = table.querySelectorAll('tr');
-                // Row 0: Truck No, Out Time
-                rows[0].cells[1].textContent = truckNo;
-                rows[0].cells[3].textContent = outTime;
-                // Row 1: Party, Sender
-                rows[1].cells[1].textContent = party;
-                rows[1].cells[3].textContent = sender;
-                // Row 2: Purpose, Gross Weight
-                rows[2].cells[1].textContent = purpose;
-                rows[2].cells[3].textContent = grossWeight.toFixed(3);
-                // Row 3: Transporter, Tare Weight
-                rows[3].cells[1].textContent = transporter;
-                rows[3].cells[3].textContent = tareWeight.toFixed(3);
-                // Row 4: Tax, Net Weight
-                rows[4].cells[1].querySelector('span').textContent = tax;
-                rows[4].cells[3].textContent = netWeight.toFixed(3);
-                // Row 5: Party Wt.
-                rows[5].cells[1].querySelector('span').textContent = partyWt.toFixed(3);
-                // Row 6: In Time, Date
-                rows[6].cells[1].textContent = inTime;
-                rows[6].cells[3].textContent = date;
-                // Row 7: Operator, Security Guard, Supervisor
-                rows[7].cells[0].querySelector('span').textContent = operator;
-                rows[7].cells[1].querySelector('span').textContent = securityGuard;
-                rows[7].cells[2].querySelector('span').textContent = supervisor;
+        function collectFromForm() {
+            const data = {};
+            fields.forEach((key) => {
+                const input = document.getElementById(key);
+                data[key] = input ? input.value : "";
+            });
+            return data;
+        }
+
+        function renderToPreview(data) {
+            fields.forEach((key) => {
+                if (data[key] !== undefined) setPreviewValue(key, data[key]);
             });
         }
 
-        function printnew1(button) {
-            window.print();
+        function loadFormFromPreview() {
+            fields.forEach((key) => {
+                const input = document.getElementById(key);
+                const preview = document.getElementById("v_" + key);
+                if (input && preview) input.value = preview.textContent.trim();
+            });
         }
 
-        function printe1(button) {
-            // Assuming export functionality, perhaps copy to clipboard or something
-            alert('Export functionality not implemented yet.');
+        function saveFormat() {
+            const data = collectFromForm();
+            renderToPreview(data);
+            localStorage.setItem(storageKey, JSON.stringify(data));
+            alert("Format saved successfully.");
         }
+
+        function loadSavedFormat() {
+            const raw = localStorage.getItem(storageKey);
+            if (!raw) {
+                loadFormFromPreview();
+                return;
+            }
+            try {
+                const data = JSON.parse(raw);
+                renderToPreview(data);
+                fields.forEach((key) => {
+                    const input = document.getElementById(key);
+                    if (input) input.value = data[key] || "";
+                });
+            } catch (e) {
+                loadFormFromPreview();
+            }
+        }
+
+        document.getElementById("saveBtn").addEventListener("click", saveFormat);
+        document.getElementById("printBtn").addEventListener("click", function () {
+            window.print();
+        });
+        document.getElementById("exportBtn").addEventListener("click", function () {
+            window.print();
+        });
+
+        loadSavedFormat();
     </script>
 </body>
 </html>
